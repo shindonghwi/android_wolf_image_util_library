@@ -7,7 +7,6 @@ import android.net.Uri
 import org.jetbrains.annotations.NotNull
 
 interface IWolfBitmap {
-
     // bitmap compress
     fun bitmapCompress(@NotNull bitmap: Bitmap, format: Bitmap.CompressFormat, compressionRate : Int = 90): Bitmap?
 
@@ -25,12 +24,14 @@ interface IWolfBitmap {
 
     // get bitmap string
     fun bitmapToString(@NotNull bitmap: Bitmap, format: Bitmap.CompressFormat, compressionRate: Int = 90): String
+}
 
+interface IWolfGallery{
     // 갤러리로 부터 이미지 가져오기
-    fun getImageFromGalley(@NotNull activity: Activity, requestCode: Int)
+    fun getImageFromGallery(@NotNull activity: Activity, requestCode: Int)
 
     // 갤러리로 부터 비디오 가져오기
-    fun getVideoFromGalley(@NotNull activity: Activity, requestCode: Int)
+    fun getVideoFromGallery(@NotNull activity: Activity, requestCode: Int)
 
     // 갤러리에서 가져온 파일의 실제경로
     fun getFileRealPath(@NotNull context: Context, @NotNull fileUri: Uri): String

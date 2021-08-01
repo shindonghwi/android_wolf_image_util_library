@@ -116,7 +116,7 @@ WolfImageUtil.bitmapForward(
 ------------------------------------------------------
 #### 7. 갤러리에서 이미지 가져오기 (1개)
 ```
-WolfImageUtil.getImageFromGalley(
+WolfImageUtil.getImageFromGallery(
     activity = /** onActivityResult callback을 받을 화면 */,
     requestCode = /** requestCode */
 )
@@ -136,7 +136,7 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 ------------------------------------------------------
 #### 8. 갤러리에서 비디오 가져오기 (1개)
 ```
-WolfImageUtil.getVideoFromGalley(
+WolfImageUtil.getVideoFromGallery(
     activity = /** onActivityResult callback을 받을 화면 */,
     requestCode = /** requestCode */
 )

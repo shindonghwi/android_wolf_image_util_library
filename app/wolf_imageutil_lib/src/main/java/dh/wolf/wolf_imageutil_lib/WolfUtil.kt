@@ -4,12 +4,9 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
-import android.widget.ImageView
-import android.content.res.Resources
-import android.database.Cursor
 import android.graphics.Matrix
 import android.media.ExifInterface
 import android.media.MediaMetadataRetriever
@@ -19,11 +16,9 @@ import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.util.Base64
 import android.util.Log
-import org.jetbrains.annotations.NotNull
 import java.io.*
 
-/** 비트맵 유틸 */
-open class BitmapUtil : IWolfBitmap {
+open class WolfUtil : IWolfBitmap, IWolfGallery {
 
     override fun bitmapCompress(
         bitmap: Bitmap,
@@ -105,7 +100,7 @@ open class BitmapUtil : IWolfBitmap {
 
     private var lastOpenTime: Long = 0
 
-    override fun getImageFromGalley(activity: Activity, requestCode: Int) {
+    override fun getImageFromGallery(activity: Activity, requestCode: Int) {
         if (SystemClock.elapsedRealtime() - lastOpenTime < 300L) {
             return
         } else {
@@ -117,7 +112,7 @@ open class BitmapUtil : IWolfBitmap {
         lastOpenTime = SystemClock.elapsedRealtime()
     }
 
-    override fun getVideoFromGalley(activity: Activity, requestCode: Int) {
+    override fun getVideoFromGallery(activity: Activity, requestCode: Int) {
         if (SystemClock.elapsedRealtime() - lastOpenTime < 300L) {
             return
         } else {
