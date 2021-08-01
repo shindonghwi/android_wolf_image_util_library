@@ -39,7 +39,8 @@ dependencyResolutionManagement {
 [ app - build.gradle ]
 dependencies {
   ...
-  implementation 'com.github.shindonghwi:WolfImageUtilLib:release_version' // release_version 자리에 위에 작성되있는 0.0.12와 같은 문자열을 기입하면됩니다.
+  // release_version: Download 오른쪽에 있는 버전을 기입하면 됩니다.
+  implementation 'com.github.shindonghwi:WolfImageUtilLib:release_version'
 }
 ```
 ------------------------------------------------------
