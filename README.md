@@ -11,7 +11,7 @@ WolfImageUtil가 제공하는 기능은 아래와 같다.
 
 ------------------------------------------------------
 
-Download
+Download [![](https://jitpack.io/v/shindonghwi/WolfImageUtilLib.svg)](https://jitpack.io/#shindonghwi/WolfImageUtilLib)
 --------
 
 ### Gradle
@@ -35,7 +35,15 @@ dependencyResolutionManagement {
   }
 }
 ```
-
+------------------------------------------------------
+```
+[ app - build.gradle ]
+dependencies {
+  ...
+  // release_version: Download 오른쪽에 있는 버전을 기입하면 됩니다.
+  implementation 'com.github.shindonghwi:WolfImageUtilLib:release_version'
+}
+```
 ------------------------------------------------------
 
 ## How To Use
