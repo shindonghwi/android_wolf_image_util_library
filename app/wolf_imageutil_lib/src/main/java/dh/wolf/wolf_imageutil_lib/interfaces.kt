@@ -1,6 +1,9 @@
 package dh.wolf.wolf_imageutil_lib
 
+import android.app.Activity
+import android.content.Context
 import android.graphics.Bitmap
+import android.net.Uri
 import org.jetbrains.annotations.NotNull
 
 interface IWolfBitmap {
@@ -22,4 +25,16 @@ interface IWolfBitmap {
 
     // get bitmap string
     fun bitmapToString(@NotNull bitmap: Bitmap, format: Bitmap.CompressFormat, compressionRate: Int = 90): String
+
+    // 갤러리로 부터 이미지 가져오기
+    fun getImageFromGalley(@NotNull activity: Activity, requestCode: Int)
+
+    // 갤러리로 부터 비디오 가져오기
+    fun getVideoFromGalley(@NotNull activity: Activity, requestCode: Int)
+
+    // 갤러리에서 가져온 파일의 실제경로
+    fun getFileRealPath(@NotNull context: Context, @NotNull fileUri: Uri): String
+
+    // 비디오의 재생시간 가져오기
+    fun getVideoPlayTime(path: String): HashMap<String, Int>
 }

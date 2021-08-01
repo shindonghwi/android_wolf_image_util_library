@@ -7,7 +7,11 @@ WolfImageUtil가 제공하는 기능은 아래와 같다.
 3. 비트맵 string 가져오기
 4. 비트맵 비율에 맞게 리사이즈
 5. 비트맵 회전
-6. 정방향 비트맵 가져오기
+6. 비트맵 정방향 이미지 가져오기
+7. 갤러리에서 이미지 가져오기 (1개)
+8. 갤러리에서 비디오 가져오기 (1개)
+9. 갤러리에서 가져온 파일의 실제 경로
+10. 비디오 재생시간 가져오기
 
 ------------------------------------------------------
 
@@ -57,7 +61,7 @@ WolfImageUtil.bitmapCompress(
     compressionRate = /** value -> 0 until 100 */
 )
 ```
-
+------------------------------------------------------
 #### 2. 비트맵 byteArray 가져오기
 ```
 // return -> Bitmap
@@ -67,7 +71,7 @@ WolfImageUtil.bitmapToByteArray(
     compressionRate = /** value -> 0 until 100 */
 )
 ```
-
+------------------------------------------------------
 #### 3. 비트맵 string 가져오기
 ```
 // return -> Bitmap
@@ -77,7 +81,7 @@ WolfImageUtil.bitmapToString(
     compressionRate = /** value -> 0 until 100 */
 )
 ```
-
+------------------------------------------------------
 #### 4. 비트맵 비율에 맞게 리사이즈
 ```
 // default 가로 최대 크기 : 1024
@@ -89,7 +93,7 @@ WolfImageUtil.bitmapRatioResize(
     maxHeight: Int = 1024
 )
 ```
-
+------------------------------------------------------
 #### 5. 비트맵 회전
 ```
 // return -> Bitmap
@@ -98,7 +102,7 @@ WolfImageUtil.bitmapRotate(
     degrees: Int /** 회전 값 */
 )
 ```
-
+------------------------------------------------------
 #### 6. 정방향 비트맵 가져오기
 ```
 // 갤러리에서 이미지를 가져온 후 서버에 업로드를하게 되면 이미지가 회전되어 있는 현상이 발생합니다.
@@ -109,10 +113,64 @@ WolfImageUtil.bitmapForward(
     filepath = /** 이미지 파일의 경로 */
 )
 ```
-
-
+------------------------------------------------------
+#### 7. 갤러리에서 이미지 가져오기 (1개)
+```
+WolfImageUtil.getImageFromGalley(
+    activity = /** onActivityResult callback을 받을 화면 */,
+    requestCode = /** requestCode */
+)
+```
+```
+// your activity
+override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    super.onActivityResult(requestCode, resultCode, data)
+    if (requestCode == GALLERY_IMAGE_CONTENT_CODE) {
+        try {
+            val uri = data!!.data
+        } catch (e: Exception) {
+        }
+    }
+}
+```
+------------------------------------------------------
+#### 8. 갤러리에서 비디오 가져오기 (1개)
+```
+WolfImageUtil.getVideoFromGalley(
+    activity = /** onActivityResult callback을 받을 화면 */,
+    requestCode = /** requestCode */
+)
+```
+```
+// your activity
+override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    super.onActivityResult(requestCode, resultCode, data)
+    if (requestCode == GALLERY_IMAGE_CONTENT_CODE) {
+        try {
+            val uri = data!!.data
+        } catch (e: Exception) {
+        }
+    }
+}
+```
+------------------------------------------------------
+#### 9. 갤러리에서 가져온 파일의 실제경로
+``` 
+WolfImageUtil.getFileRealPath(
+    context = /** context 객체 */,
+    fileUri = /** 갤러리에서 가져온 파일의 uri 경로 */
+)
+```
+------------------------------------------------------
+#### 10. 비디오의 재생시간 가져오기
+``` 
+WolfImageUtil.getVideoPlayTime(
+    path = /** 비디오 파일의 경로 */
+)
+```
+------------------------------------------------------
 ## License 
- ```code
+```
 Copyright 2021 ShinDongHwi
 
 Licensed under the Apache License, Version 2.0 (the "License");

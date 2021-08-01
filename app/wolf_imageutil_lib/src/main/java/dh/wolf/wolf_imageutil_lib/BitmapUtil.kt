@@ -1,15 +1,26 @@
 package dh.wolf.wolf_imageutil_lib
 
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.widget.ImageView
-import java.io.ByteArrayOutputStream
 import android.content.res.Resources
+import android.database.Cursor
 import android.graphics.Matrix
 import android.media.ExifInterface
+import android.media.MediaMetadataRetriever
+import android.net.Uri
+import android.os.SystemClock
+import android.provider.MediaStore
+import android.provider.OpenableColumns
 import android.util.Base64
-import java.io.IOException
+import android.util.Log
+import org.jetbrains.annotations.NotNull
+import java.io.*
 
 /** 비트맵 유틸 */
 open class BitmapUtil : IWolfBitmap {
@@ -92,4 +103,74 @@ open class BitmapUtil : IWolfBitmap {
         return Base64.encodeToString(bytes, Base64.DEFAULT)
     }
 
+    private var lastOpenTime: Long = 0
+
+    override fun getImageFromGalley(activity: Activity, requestCode: Int) {
+        if (SystemClock.elapsedRealtime() - lastOpenTime < 300L) {
+            return
+        } else {
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            intent.type = "image/*"
+            intent.action = Intent.ACTION_GET_CONTENT
+            activity.startActivityForResult(intent, requestCode)
+        }
+        lastOpenTime = SystemClock.elapsedRealtime()
+    }
+
+    override fun getVideoFromGalley(activity: Activity, requestCode: Int) {
+        if (SystemClock.elapsedRealtime() - lastOpenTime < 300L) {
+            return
+        } else {
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            intent.type = "video/*"
+            intent.action = Intent.ACTION_GET_CONTENT
+            activity.startActivityForResult(intent, requestCode)
+        }
+        lastOpenTime = SystemClock.elapsedRealtime()
+    }
+
+    @SuppressLint("Recycle")
+    override fun getFileRealPath(context: Context, fileUri: Uri): String {
+        val returnCursor: Cursor = context.contentResolver.query(fileUri, null, null, null, null)!!
+        val nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+        returnCursor.moveToFirst()
+        val name = returnCursor.getString(nameIndex)
+        val file = File(context.filesDir, name)
+        try {
+            val inputStream: InputStream? = context.contentResolver.openInputStream(fileUri)
+            val outputStream = FileOutputStream(file)
+            var read = 0
+            val maxBufferSize = 1 * 1024 * 1024
+            val bytesAvailable: Int = inputStream!!.available()
+            val bufferSize = Math.min(bytesAvailable, maxBufferSize)
+            val buffers = ByteArray(bufferSize)
+            while (inputStream.read(buffers).also { read = it } != -1) {
+                outputStream.write(buffers, 0, read)
+            }
+            inputStream.close()
+            outputStream.close()
+            Log.e("File Path", "Path " + file.absolutePath)
+        } catch (e: java.lang.Exception) {
+            Log.e("Exception", e.message!!)
+        }
+        return file.absolutePath
+    }
+
+    override fun getVideoPlayTime(path: String): HashMap<String, Int> {
+        val retriever = MediaMetadataRetriever()
+        retriever.setDataSource(path)
+
+        val time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
+        val timeInMilliSec = time!!.toLong()
+        val duration = timeInMilliSec / 1000
+        val hours = duration / 3600
+        val minutes = (duration - hours * 3600) / 60
+        val seconds = duration - (hours * 3600 + minutes * 60)
+
+        val timeJsonData = HashMap<String, Int>()
+        timeJsonData["hour"] = hours.toInt()
+        timeJsonData["minute"] = minutes.toInt()
+        timeJsonData["second"] = seconds.toInt()
+        return timeJsonData
+    }
 }
