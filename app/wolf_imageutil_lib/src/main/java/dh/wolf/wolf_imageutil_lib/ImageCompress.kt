@@ -18,8 +18,9 @@ open class ImageCompress: IWolfImage {
         val stream = ByteArrayOutputStream()
         bitmap.compress(format, compressionRate, stream)
         val byteArray: ByteArray = stream.toByteArray()
+        val newBitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
         bitmap.recycle()
-        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+        return newBitmap
     }
 
     override fun compressBitmap(
@@ -32,8 +33,9 @@ open class ImageCompress: IWolfImage {
         val stream = ByteArrayOutputStream()
         bitmap.compress(format, compressionRate, stream)
         val byteArray: ByteArray = stream.toByteArray()
+        val newBitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
         bitmap.recycle()
-        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+        return newBitmap
     }
 
     override fun compressBitmap(
@@ -45,7 +47,8 @@ open class ImageCompress: IWolfImage {
         val stream = ByteArrayOutputStream()
         bitmap.compress(format, compressionRate, stream)
         val byteArray: ByteArray = stream.toByteArray()
+        val newBitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
         bitmap.recycle()
-        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+        return newBitmap
     }
 }
