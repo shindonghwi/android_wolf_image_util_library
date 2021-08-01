@@ -1,12 +1,22 @@
 package dh.wolf.wolf_imageutil_lib
 
-import android.content.res.Resources
 import android.graphics.Bitmap
-import android.widget.ImageView
 import org.jetbrains.annotations.NotNull
 
-interface IWolfImage {
-    fun compressBitmap(@NotNull bitmap: Bitmap, format: Bitmap.CompressFormat, compressionRate : Int = 90): Bitmap?
-    fun compressBitmap(@NotNull imageView: ImageView, format: Bitmap.CompressFormat, compressionRate : Int = 90): Bitmap?
-    fun compressBitmap(@NotNull drawable: Int, format: Bitmap.CompressFormat, compressionRate : Int = 90): Bitmap?
+interface IWolfBitmap {
+
+    // bitmap compress
+    fun bitmapCompress(@NotNull bitmap: Bitmap, format: Bitmap.CompressFormat, compressionRate : Int = 90): Bitmap?
+
+    // get byte array from bitmap
+    fun bitmapToByteArray(@NotNull bitmap: Bitmap, format: Bitmap.CompressFormat, compressionRate: Int = 90): ByteArray
+
+    // get resize bitmap
+    fun bitmapRatioResize(@NotNull image: Bitmap, maxWidth: Int = 1024, maxHeight: Int = 1024): Bitmap
+
+    // get rotate bitmap
+    fun bitmapRotate(@NotNull bitmap: Bitmap, degrees: Int): Bitmap?
+
+    // get forward bitmap
+    fun bitmapForward(@NotNull bitmap: Bitmap, @NotNull filepath: String): Bitmap?
 }
