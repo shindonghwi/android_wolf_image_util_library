@@ -19,4 +19,7 @@ interface IWolfBitmap {
 
     // get forward bitmap
     fun bitmapForward(@NotNull bitmap: Bitmap, @NotNull filepath: String): Bitmap?
+
+    // get bitmap string
+    fun bitmapToString(@NotNull bitmap: Bitmap, format: Bitmap.CompressFormat, compressionRate: Int = 90): String
 }

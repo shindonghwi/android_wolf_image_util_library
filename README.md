@@ -4,9 +4,10 @@ WolfImageUtil
 WolfImageUtil가 제공하는 기능은 아래와 같다.
 1. 비트맵 압축
 2. 비트맵 byteArray 가져오기
-3. 비트맵 비율에 맞게 리사이즈
-4. 비트맵 회전
-5. 정방향 비트맵 가져오기
+3. 비트맵 string 가져오기
+4. 비트맵 비율에 맞게 리사이즈
+5. 비트맵 회전
+6. 정방향 비트맵 가져오기
 
 ------------------------------------------------------
 
@@ -59,7 +60,17 @@ WolfImageUtil.bitmapToByteArray(
 )
 ```
 
-#### 3. 비트맵 비율에 맞게 리사이즈
+#### 3. 비트맵 string 가져오기
+```
+// return -> Bitmap
+WolfImageUtil.bitmapToString(
+    bitmap = /** bitmap */,
+    format = /** Bitmap.CompressFormat.PNG or Bitmap.CompressFormat.JPEG */,
+    compressionRate = /** value -> 0 until 100 */
+)
+```
+
+#### 4. 비트맵 비율에 맞게 리사이즈
 ```
 // default 가로 최대 크기 : 1024
 // default 세로 최대 크기 : 1024
@@ -71,7 +82,7 @@ WolfImageUtil.bitmapRatioResize(
 )
 ```
 
-#### 4. 비트맵 회전
+#### 5. 비트맵 회전
 ```
 // return -> Bitmap
 WolfImageUtil.bitmapRotate(
@@ -80,7 +91,7 @@ WolfImageUtil.bitmapRotate(
 )
 ```
 
-#### 5. 정방향 비트맵 가져오기
+#### 6. 정방향 비트맵 가져오기
 ```
 // 갤러리에서 이미지를 가져온 후 서버에 업로드를하게 되면 이미지가 회전되어 있는 현상이 발생합니다.
 // 그래서 이미지를 정방향으로 변경해주는 함수 입니다.

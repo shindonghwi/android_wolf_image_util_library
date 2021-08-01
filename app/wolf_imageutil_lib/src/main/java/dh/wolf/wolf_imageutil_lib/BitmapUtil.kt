@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream
 import android.content.res.Resources
 import android.graphics.Matrix
 import android.media.ExifInterface
+import android.util.Base64
 import java.io.IOException
 
 /** 비트맵 유틸 */
@@ -79,4 +80,16 @@ open class BitmapUtil : IWolfBitmap {
         }
         return bitmapRotate(bitmap, 0)
     }
+
+    override fun bitmapToString(
+        bitmap: Bitmap,
+        format: Bitmap.CompressFormat,
+        compressionRate: Int
+    ): String {
+        val stream = ByteArrayOutputStream()
+        bitmap.compress(format, compressionRate, stream)
+        val bytes: ByteArray = stream.toByteArray()
+        return Base64.encodeToString(bytes, Base64.DEFAULT)
+    }
+
 }
