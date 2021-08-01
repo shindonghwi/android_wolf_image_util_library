@@ -39,7 +39,7 @@ dependencyResolutionManagement {
 ```
 // return -> Bitmap
 WolfImageUtil.compressBitmap(
-    bitmap = /** your bitmap */,
+    /** [bitmap] or [imageView] or [drawable] */,
     format = /** Bitmap.CompressFormat.PNG or Bitmap.CompressFormat.JPEG */,
     compressionRate = /** value -> 0 until 100 */
 )

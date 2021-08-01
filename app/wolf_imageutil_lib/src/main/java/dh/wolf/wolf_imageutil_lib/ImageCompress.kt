@@ -38,11 +38,10 @@ open class ImageCompress: IWolfImage {
 
     override fun compressBitmap(
         drawable: Int,
-        resourses: Resources,
         format: Bitmap.CompressFormat,
         compressionRate: Int
     ): Bitmap? {
-        val bitmap = BitmapFactory.decodeResource(resourses, drawable)
+        val bitmap = BitmapFactory.decodeResource(Resources.getSystem(), drawable)
         val stream = ByteArrayOutputStream()
         bitmap.compress(format, compressionRate, stream)
         val byteArray: ByteArray = stream.toByteArray()
