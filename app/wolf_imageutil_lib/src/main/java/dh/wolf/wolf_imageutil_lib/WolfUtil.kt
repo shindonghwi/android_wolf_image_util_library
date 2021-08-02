@@ -16,9 +16,13 @@ import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.util.Base64
 import android.util.Log
+import android.widget.Toast
+import dh.wolf.wolf_imageutil_lib.const.GALLERY_CODE
 import java.io.*
 
 open class WolfUtil : IWolfBitmap, IWolfGallery {
+
+    val TAG = "WOLF_UTIL_LIBRARY"
 
     override fun bitmapCompress(
         bitmap: Bitmap,
@@ -112,7 +116,8 @@ open class WolfUtil : IWolfBitmap, IWolfGallery {
         lastOpenTime = SystemClock.elapsedRealtime()
     }
 
-    override fun getMultiImageFromGallery(activity: Activity, requestCode: Int) {
+    override fun getMultiImageFromGallery() {
+        val imageUriList = ArrayList<Uri>()
         if (SystemClock.elapsedRealtime() - lastOpenTime < 300L) {
             return
         } else {
@@ -120,7 +125,20 @@ open class WolfUtil : IWolfBitmap, IWolfGallery {
             intent.type = "image/*"
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
             intent.action = Intent.ACTION_GET_CONTENT
-            activity.startActivityForResult(intent, requestCode)
+
+            WolfActivity(object : WolfListener{
+                override fun call(data: Intent?) {
+                    if (data?.clipData != null) { // 사진 여러개 선택한 경우
+                        for (i in 0 until data.clipData!!.itemCount) {
+                            imageUriList.add(data.clipData!!.getItemAt(i).uri)
+                        }
+                    } else { // 단일 선택
+                        data?.data?.let { uri ->
+                            imageUriList.add(uri)
+                        }
+                    }
+                }
+            }).startActivityForResult(intent, GALLERY_CODE)
         }
         lastOpenTime = SystemClock.elapsedRealtime()
     }

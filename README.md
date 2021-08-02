@@ -138,22 +138,7 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 ------------------------------------------------------
 #### 8. 갤러리에서 이미지 가져오기 (다중)
 ```
-WolfImageUtil.getMultiImageFromGallery(
-    activity = /** onActivityResult callback을 받을 화면 */,
-    requestCode = /** requestCode */
-)
-```
-```
-// your activity
-override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    super.onActivityResult(requestCode, resultCode, data)
-    if (requestCode == GALLERY_IMAGE_CONTENT_CODE) {
-        try {
-            val uri = data!!.data
-        } catch (e: Exception) {
-        }
-    }
-}
+WolfImageUtil.getMultiImageFromGallery()
 ```
 ------------------------------------------------------
 #### 9. 갤러리에서 비디오 가져오기 (1개)
