@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-class WolfActivity(private val listener: WolfListener) : AppCompatActivity() {
+class WolfActivity : AppCompatActivity() {
+    lateinit var listener: WolfListener
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -14,5 +16,9 @@ class WolfActivity(private val listener: WolfListener) : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         listener.call(data)
         finish()
+    }
+
+    fun setWolfListener(wolfListener: WolfListener) {
+        listener = wolfListener
     }
 }

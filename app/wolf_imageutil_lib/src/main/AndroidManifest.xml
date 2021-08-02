@@ -6,6 +6,10 @@
     <uses-sdk android:minSdkVersion="21"
         tools:ignore="GradleOverrides" />
 
-    <application/>
+    <application>
+        <activity
+            android:name="dh.wolf.wolf_imageutil_lib.WolfActivity"
+            android:screenOrientation="unspecified" />
+    </application>
 
 </manifest>
