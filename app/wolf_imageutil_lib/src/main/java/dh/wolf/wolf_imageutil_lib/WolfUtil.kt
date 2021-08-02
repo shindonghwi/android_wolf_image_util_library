@@ -112,6 +112,19 @@ open class WolfUtil : IWolfBitmap, IWolfGallery {
         lastOpenTime = SystemClock.elapsedRealtime()
     }
 
+    override fun getMultiImageFromGallery(activity: Activity, requestCode: Int) {
+        if (SystemClock.elapsedRealtime() - lastOpenTime < 300L) {
+            return
+        } else {
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            intent.type = "image/*"
+            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+            intent.action = Intent.ACTION_GET_CONTENT
+            activity.startActivityForResult(intent, requestCode)
+        }
+        lastOpenTime = SystemClock.elapsedRealtime()
+    }
+
     override fun getVideoFromGallery(activity: Activity, requestCode: Int) {
         if (SystemClock.elapsedRealtime() - lastOpenTime < 300L) {
             return
