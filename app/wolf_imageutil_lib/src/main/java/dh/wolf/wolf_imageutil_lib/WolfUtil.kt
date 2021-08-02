@@ -126,7 +126,7 @@ open class WolfUtil : IWolfBitmap, IWolfGallery {
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
             intent.action = Intent.ACTION_GET_CONTENT
 
-            WolfActivity(object : WolfListener{
+            val activity = WolfActivity(object : WolfListener{
                 override fun call(data: Intent?) {
                     if (data?.clipData != null) { // 사진 여러개 선택한 경우
                         for (i in 0 until data.clipData!!.itemCount) {
@@ -138,7 +138,8 @@ open class WolfUtil : IWolfBitmap, IWolfGallery {
                         }
                     }
                 }
-            }).startActivityForResult(intent, GALLERY_CODE)
+            })
+            activity.startActivityForResult(intent, GALLERY_CODE)
         }
         lastOpenTime = SystemClock.elapsedRealtime()
     }
