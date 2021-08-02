@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="dh.wolf.wolf_imageutil_lib">
+    package="dh.wolf.wolf_imageutil_lib" >
 
-    <uses-sdk android:minSdkVersion="21"
+    <uses-sdk
+        android:minSdkVersion="21"
         tools:ignore="GradleOverrides" />
 
     <application>
         <activity
-            android:name="dh.wolf.wolf_imageutil_lib.WolfActivity"
-            android:screenOrientation="unspecified" />
+            android:name=".WolfActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

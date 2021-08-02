@@ -1,8 +1,8 @@
 package dh.wolf.wolf_imageutil_lib
 
 import android.content.Intent
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 
 class WolfActivity : AppCompatActivity() {
     lateinit var listener: WolfListener
