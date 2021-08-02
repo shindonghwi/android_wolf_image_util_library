@@ -3,10 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="dh.wolf.wolf_imageutil_lib" >
 
-    <uses-sdk
-        android:minSdkVersion="21"
-        tools:ignore="GradleOverrides" />
-
     <application>
         <activity
             android:name=".WolfActivity"
