@@ -116,35 +116,6 @@ open class WolfUtil : IWolfBitmap, IWolfGallery {
         lastOpenTime = SystemClock.elapsedRealtime()
     }
 
-    override fun getMultiImageFromGallery() {
-        val imageUriList = ArrayList<Uri>()
-        if (SystemClock.elapsedRealtime() - lastOpenTime < 300L) {
-            return
-        } else {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            intent.type = "image/*"
-            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-            intent.action = Intent.ACTION_GET_CONTENT
-
-            val activity = WolfActivity()
-            activity.setWolfListener(object : WolfListener{
-                override fun call(data: Intent?) {
-                    if (data?.clipData != null) { // 사진 여러개 선택한 경우
-                        for (i in 0 until data.clipData!!.itemCount) {
-                            imageUriList.add(data.clipData!!.getItemAt(i).uri)
-                        }
-                    } else { // 단일 선택
-                        data?.data?.let { uri ->
-                            imageUriList.add(uri)
-                        }
-                    }
-                }
-            })
-            activity.startActivityForResult(intent, GALLERY_CODE)
-        }
-        lastOpenTime = SystemClock.elapsedRealtime()
-    }
-
     override fun getVideoFromGallery(activity: Activity, requestCode: Int) {
         if (SystemClock.elapsedRealtime() - lastOpenTime < 300L) {
             return

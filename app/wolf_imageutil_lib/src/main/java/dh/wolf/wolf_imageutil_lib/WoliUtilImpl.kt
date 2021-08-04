@@ -30,9 +30,6 @@ interface IWolfGallery{
     // 갤러리로 부터 이미지 가져오기
     fun getImageFromGallery(@NotNull activity: Activity, requestCode: Int)
 
-    // 갤러리로 부터 다중 이미지 가져오기
-    fun getMultiImageFromGallery()
-
     // 갤러리로 부터 비디오 가져오기
     fun getVideoFromGallery(@NotNull activity: Activity, requestCode: Int)
 

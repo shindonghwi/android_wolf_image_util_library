@@ -9,10 +9,9 @@ WolfImageUtil가 제공하는 기능은 아래와 같다.
 5. 비트맵 회전하기
 6. 비트맵 정방향 이미지 가져오기
 7. 갤러리에서 이미지 가져오기 (1개)
-8. 갤러리에서 이미지 가져오기 (다중)
-9. 갤러리에서 비디오 가져오기 (1개)
-10. 갤러리에서 가져온 파일의 실제 경로 가져오기
-11. 비디오 재생시간 가져오기
+8. 갤러리에서 비디오 가져오기 (1개)
+9. 갤러리에서 가져온 파일의 실제 경로 가져오기
+10. 비디오 재생시간 가져오기
 
 
 ------------------------------------------------------
@@ -136,12 +135,7 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 }
 ```
 ------------------------------------------------------
-#### 8. 갤러리에서 이미지 가져오기 (다중)
-```
-WolfImageUtil.getMultiImageFromGallery()
-```
-------------------------------------------------------
-#### 9. 갤러리에서 비디오 가져오기 (1개)
+#### 8. 갤러리에서 비디오 가져오기 (1개)
 ```
 WolfImageUtil.getVideoFromGallery(
     activity = /** onActivityResult callback을 받을 화면 */,
@@ -161,7 +155,7 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 }
 ```
 ------------------------------------------------------
-#### 10. 갤러리에서 가져온 파일의 실제경로
+#### 9. 갤러리에서 가져온 파일의 실제경로
 ``` 
 WolfImageUtil.getFileRealPath(
     context = /** context 객체 */,
@@ -169,7 +163,7 @@ WolfImageUtil.getFileRealPath(
 )
 ```
 ------------------------------------------------------
-#### 11. 비디오의 재생시간 가져오기
+#### 10. 비디오의 재생시간 가져오기
 ``` 
 WolfImageUtil.getVideoPlayTime(
     path = /** 비디오 파일의 경로 */
