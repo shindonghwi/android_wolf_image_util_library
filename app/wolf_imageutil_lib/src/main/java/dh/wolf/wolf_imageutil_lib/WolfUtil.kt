@@ -22,12 +22,13 @@ import java.io.*
 
 open class WolfUtil : IWolfBitmap, IWolfGallery {
 
+    val compressionRateDefaulValue = 90
     val TAG = "WOLF_UTIL_LIBRARY"
 
     override fun bitmapCompress(
         bitmap: Bitmap,
         format: Bitmap.CompressFormat,
-        compressionRate: Int
+        compressionRate: Int = compressionRateDefaulValue
     ): Bitmap? {
         val stream = ByteArrayOutputStream()
         bitmap.compress(format, compressionRate, stream)
@@ -38,7 +39,7 @@ open class WolfUtil : IWolfBitmap, IWolfGallery {
     override fun bitmapToByteArray(
         bitmap: Bitmap,
         format: Bitmap.CompressFormat,
-        compressionRate: Int
+        compressionRate: Int = compressionRateDefaulValue
     ): ByteArray {
         val stream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, compressionRate, stream)
@@ -94,7 +95,7 @@ open class WolfUtil : IWolfBitmap, IWolfGallery {
     override fun bitmapToString(
         bitmap: Bitmap,
         format: Bitmap.CompressFormat,
-        compressionRate: Int
+        compressionRate: Int = compressionRateDefaulValue
     ): String {
         val stream = ByteArrayOutputStream()
         bitmap.compress(format, compressionRate, stream)
